@@ -1,8 +1,7 @@
 ### Features
 
 - [x] Create user route
-- [ ] Get especific user
-- [ ] Get all users
-- [ ] Create permissions
-- [ ] Update user permissions
+- [x] Get especific user
+- [x] Get all users
+- [ ] Update user roles
 - [ ] Delete user
