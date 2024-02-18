@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { prisma } from '../lib/prisma'
 import { z } from 'zod'
+import { userExists } from '../utils/user-exists'
 
 export async function getSpecificUser(app: FastifyInstance) {
   app.get('/users/:userId', async(request, reply) => {
@@ -10,16 +11,7 @@ export async function getSpecificUser(app: FastifyInstance) {
 
     const { userId } = getSpecifcUserParams.parse(request.params)
 
-    
-    const user = await prisma.user.findUnique({
-      where: {
-        id: userId
-      }
-    })
-    
-    if(!user) {
-      return reply.status(400).send({ error: `Failed to find user using the provided ID` })
-    }
+    const user = await userExists(userId, reply)
 
     return reply.status(200).send({ user })
   })
