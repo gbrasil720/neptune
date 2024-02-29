@@ -16,7 +16,7 @@ import {
 import { Button } from '../ui/button'
 import { Input } from '@/components/ui/input'
 
-import { Loader2 } from 'lucide-react'
+import { Loader2, Plus } from 'lucide-react'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -64,7 +64,10 @@ export function CreateUserDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
-        <Button>Create new user</Button>
+        <Button className="flex gap-1">
+          <Plus className="w-5 h-5" />
+          Create new user
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogTitle>Creating new user</DialogTitle>

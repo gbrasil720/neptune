@@ -1,7 +1,7 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react'
+import { ArrowUpDown, MoreHorizontal, Trash } from 'lucide-react'
 
 import { Button } from '../ui/button'
 import {
@@ -20,6 +20,7 @@ import {
   DialogTrigger,
 } from '../ui/dialog'
 import { EditUserForm } from '../edit-user-form'
+import { api } from '@/lib/api'
 
 export type User = {
   id: string
@@ -84,6 +85,21 @@ export const columns: ColumnDef<User>[] = [
         })
       }
 
+      async function deleteUser() {
+        try {
+          await api.delete(`/users/${user.id}`)
+        } catch {
+          return toast({
+            variant: 'destructive',
+            title: 'Oops! An error occurred',
+            description:
+              'Some type of error occurred during your transaction, try again later!',
+          })
+        }
+
+        window.location.reload()
+      }
+
       return (
         <Dialog>
           <DropdownMenu>
@@ -98,9 +114,16 @@ export const columns: ColumnDef<User>[] = [
               <DropdownMenuItem onClick={copyIdToClipboard}>
                 Copy user id
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <DialogTrigger>Manage user</DialogTrigger>
+                <DialogTrigger>Update user</DialogTrigger>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="flex gap-2 text-red-500 hover:underline hover:cursor-pointer focus:text-red-500 focus:bg-slate-100"
+                onClick={deleteUser}
+              >
+                <Trash className="w-4 h-4" />
+                Delete user
               </DropdownMenuItem>
             </DropdownMenuContent>
             <DialogPortal>

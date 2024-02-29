@@ -1,5 +1,7 @@
 'use client'
 
+import { PreLoader } from '@/components/pre-loader'
+import { Skeleton } from '@/components/ui/skeleton'
 import UsersTable from '@/components/user-table'
 import { api } from '@/lib/api'
 import { useEffect, useState } from 'react'
@@ -14,12 +16,19 @@ export default function Home() {
       setData(data.users)
     }
 
-    handleLoadData()
+    setTimeout(() => {
+      handleLoadData()
+    }, 5000)
   }, [])
 
-  if (!data) {
-    return console.log('LOADING')
-  }
-
-  return <UsersTable data={data} />
+  return (
+    <>
+      {data ? (
+        <UsersTable data={data} />
+      ) : (
+        // <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+        <PreLoader />
+      )}
+    </>
+  )
 }

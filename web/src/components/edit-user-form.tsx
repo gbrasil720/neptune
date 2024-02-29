@@ -22,12 +22,10 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { useToast } from './ui/use-toast'
 import { api } from '@/lib/api'
-import { Spinner } from '@material-tailwind/react'
 import { Loader2 } from 'lucide-react'
 
 export function EditUserForm({ user }: any) {
   const [loading, setLoading] = useState<boolean>()
-  const [deletingLoading, setDeletingLoading] = useState<boolean>()
   const { toast } = useToast()
 
   const form = useForm<z.infer<typeof editUserFormSchema>>({
@@ -48,26 +46,6 @@ export function EditUserForm({ user }: any) {
     }
 
     setLoading(false)
-    window.location.reload()
-  }
-
-  async function deleteUser() {
-    console.log('DELETING')
-
-    setDeletingLoading(true)
-
-    try {
-      await api.delete(`/users/${user.id}`)
-    } catch {
-      return toast({
-        variant: 'destructive',
-        title: 'Oops! An error occurred!',
-        description:
-          'An error occurred trying to delete this user, try again later',
-      })
-    }
-
-    setDeletingLoading(false)
     window.location.reload()
   }
 
@@ -149,29 +127,13 @@ export function EditUserForm({ user }: any) {
             </FormItem>
           )}
         />
-        <div className="flex justify-between">
-          {loading ? (
-            <Button disabled>
-              <Loader2 className="mr-2 h-6 w-6 animate-spin" />
-            </Button>
-          ) : (
-            <Button disabled={deletingLoading}>Update user</Button>
-          )}
-          {deletingLoading ? (
-            <Button disabled variant="destructive">
-              <Loader2 className="mr-2 h-6 w-6 animate-spin" />
-            </Button>
-          ) : (
-            <Button
-              type="button"
-              disabled={loading}
-              variant="destructive"
-              onClick={deleteUser}
-            >
-              Delete user
-            </Button>
-          )}
-        </div>
+        {loading ? (
+          <Button disabled>
+            <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+          </Button>
+        ) : (
+          <Button className="w-full">Update user</Button>
+        )}
       </form>
     </Form>
   )
