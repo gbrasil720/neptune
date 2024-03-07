@@ -3,6 +3,7 @@ import { NavLink } from './nav-link'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Separator } from '../ui/separator'
 import { ModeToggle } from './theme-switcher'
+import { AvatarDropdown } from '../avatarDropdown'
 
 export function Navbar() {
   return (
@@ -18,10 +19,10 @@ export function Navbar() {
         </div>
         <div className="flex space-x-6">
           <ModeToggle />
-          <Avatar>
-            <AvatarImage src="https://github.com/gbrasil720.png" />
-            <AvatarFallback>GB</AvatarFallback>
-          </Avatar>
+          <AvatarDropdown
+            avatarSrc="https://github.com/gbrasil720.png"
+            avatarFallback="GB"
+          />
         </div>
       </div>
       <Separator />
