@@ -15,11 +15,9 @@ export async function createUser(app: FastifyInstance) {
     const details = createUserBody.safeParse(request.body)
 
     if (!details.success || !details.data) {
-      return reply
-        .status(400)
-        .send({
-          error: 'The user details are not fully completed or are invalid',
-        })
+      return reply.status(400).send({
+        error: 'The user details are not fully completed or are invalid',
+      })
     }
 
     const userExists = await prisma.user.findFirst({
