@@ -7,14 +7,7 @@ export default function AuthPage() {
     <div className="relative flex min-h-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[350px] flex-col justify-center space-y-6">
         <div className="flex flex-col items-center space-y-4">
-          <Image
-            src="/logo-light.png"
-            alt="Neptune"
-            className="size-24"
-            width={130}
-            height={130}
-            draggable={false}
-          />
+          <Image src="/logo.svg" alt="Neptune" width={120} height={120} />
 
           <div className="space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">neptune</h1>

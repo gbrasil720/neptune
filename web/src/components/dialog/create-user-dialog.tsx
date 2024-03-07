@@ -81,7 +81,11 @@ export function CreateUserDialog() {
                   <FormItem>
                     <FormLabel>First name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Guilherme" {...field} />
+                      <Input
+                        placeholder="Guilherme"
+                        {...field}
+                        className="dark:text-primary"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -94,7 +98,11 @@ export function CreateUserDialog() {
                   <FormItem>
                     <FormLabel>Last name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Brasil" {...field} />
+                      <Input
+                        placeholder="Brasil"
+                        {...field}
+                        className="dark:text-primary"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -110,6 +118,7 @@ export function CreateUserDialog() {
                       <Input
                         placeholder="dev.guilhermebrasil@gmail.com"
                         {...field}
+                        className="dark:text-primary"
                       />
                     </FormControl>
                     <FormMessage />
@@ -123,7 +132,11 @@ export function CreateUserDialog() {
                   <FormItem>
                     <FormLabel>Telephone</FormLabel>
                     <FormControl>
-                      <Input placeholder="77777777777" {...field} />
+                      <Input
+                        placeholder="77777777777"
+                        {...field}
+                        className="dark:text-primary"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

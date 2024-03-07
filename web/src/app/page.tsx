@@ -1,7 +1,7 @@
 'use client'
 
+import { Navbar } from '@/components/navbar'
 import { PreLoader } from '@/components/pre-loader'
-import { Skeleton } from '@/components/ui/skeleton'
 import UsersTable from '@/components/user-table'
 import { api } from '@/lib/api'
 import { useEffect, useState } from 'react'
@@ -18,17 +18,13 @@ export default function Home() {
 
     setTimeout(() => {
       handleLoadData()
-    }, 5000)
+    }, 2000)
   }, [])
 
   return (
     <>
-      {data ? (
-        <UsersTable data={data} />
-      ) : (
-        // <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-        <PreLoader />
-      )}
+      <Navbar />
+      <>{data ? <UsersTable data={data} /> : <PreLoader />}</>
     </>
   )
 }
