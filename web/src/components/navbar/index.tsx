@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { NavLink } from './nav-link'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Separator } from '../ui/separator'
 import { ModeToggle } from './theme-switcher'
 import { AvatarDropdown } from '../avatarDropdown'
+import { LanguageSelect } from './language-select'
 
 export function Navbar() {
   return (
@@ -17,7 +17,9 @@ export function Navbar() {
             <NavLink href="#">Users</NavLink>
           </div>
         </div>
-        <div className="flex space-x-6">
+        <div className="flex space-x-6 items-center">
+          <LanguageSelect />
+          <Separator orientation="vertical" className="h-6" />
           <ModeToggle />
           <AvatarDropdown
             avatarSrc="https://github.com/gbrasil720.png"

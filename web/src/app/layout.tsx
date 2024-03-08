@@ -1,3 +1,5 @@
+'use client'
+
 import { ClerkProvider } from '@clerk/nextjs'
 
 import { Inter as FontSans } from 'next/font/google'
@@ -6,6 +8,8 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/components/theme-provider'
+import { useEffect } from 'react'
+import { i18n } from 'next-i18next'
 
 const fontSans = FontSans({
   subsets: ['latin'],
