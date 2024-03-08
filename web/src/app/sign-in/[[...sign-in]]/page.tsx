@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { SignInButton } from '@clerk/nextjs'
 import { AtSign } from 'lucide-react'
 import Image from 'next/image'
 
@@ -17,10 +18,12 @@ export default function AuthPage() {
           </div>
         </div>
         <div>
-          <Button variant="outline" className="w-full">
-            <AtSign size={24} className="mr-2 size-4" />
-            Sign in with Google
-          </Button>
+          <SignInButton>
+            <Button variant="outline" className="w-full">
+              <AtSign size={24} className="mr-2 size-4" />
+              Sign in with Google
+            </Button>
+          </SignInButton>
         </div>
         <p className="px-10 text-center text-sm leading-relaxed text-muted-foreground">
           By clicking continue, you agree to our{' '}
