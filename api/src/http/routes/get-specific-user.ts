@@ -4,9 +4,9 @@ import { z } from 'zod'
 import { userExists } from '../utils/user-exists'
 
 export async function getSpecificUser(app: FastifyInstance) {
-  app.get('/users/:userId', async(request, reply) => {
+  app.get('/users/:userId', async (request, reply) => {
     const getSpecifcUserParams = z.object({
-      userId: z.string().uuid()
+      userId: z.string().uuid(),
     })
 
     const { userId } = getSpecifcUserParams.parse(request.params)
