@@ -2,10 +2,19 @@ import Image from 'next/image'
 import { NavLink } from './nav-link'
 import { Separator } from '../ui/separator'
 import { ModeToggle } from './theme-switcher'
-import { AvatarDropdown } from '../avatarDropdown'
+import { AvatarDropdown } from '../avatar-dropdown'
 import { LanguageSelect } from './language-select'
+import { createClient } from '@/utils/supabase/client'
 
 export function Navbar() {
+  async function test() {
+    const supabase = createClient()
+    await supabase.from('TeamManager').insert({
+      name: 'Guilherme',
+      email: 'resendebrasilgui@gmail.com',
+    })
+  }
+
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center mx-auto container">
@@ -17,6 +26,7 @@ export function Navbar() {
             <NavLink href="#">Users</NavLink>
           </div>
         </div>
+        <button onClick={test}>TEST</button>
         <div className="flex space-x-6 items-center">
           <LanguageSelect />
           <Separator orientation="vertical" className="h-6" />

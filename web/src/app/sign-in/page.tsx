@@ -27,12 +27,20 @@ export default function AuthPage() {
           },
         },
       })
-      .then((data) => {
-        // router.push('/sign-in')
-        console.log(data)
-        // supabase.from('TeamManager').insert([
-        //   firstName: ''
-        // ])
+      .then(async () => {
+        const { data } = await supabase.auth.getSession()
+
+        const name =
+          data.session?.user.identities?.[0]?.identity_data?.name ?? ''
+        const email = data.session?.user.user_metadata?.email ?? ''
+
+        await supabase.from('TeamManager').insert({
+          name,
+          email,
+        })
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 

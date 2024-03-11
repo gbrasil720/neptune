@@ -14,15 +14,11 @@ export default function Home() {
 
   const supabase = createClient()
 
-  // if (!session) {
-  //   router.push('/sign-in')
-  // }
-
   useEffect(() => {
     async function loadSession() {
       const session = await supabase.auth.getSession()
 
-      if (!session) {
+      if (!session.data.session) {
         router.push('/sign-in')
       }
 
