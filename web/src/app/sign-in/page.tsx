@@ -27,11 +27,12 @@ export default function AuthPage() {
           },
         },
       })
-      .then(() => {
+      .then((data) => {
         // router.push('/sign-in')
-        toast({
-          title: 'Success',
-        })
+        console.log(data)
+        // supabase.from('TeamManager').insert([
+        //   firstName: ''
+        // ])
       })
   }
 
