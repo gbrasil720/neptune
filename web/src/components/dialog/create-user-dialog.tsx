@@ -22,7 +22,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import { userFormSchema } from '@/services/user-zod-model'
+import { userFormSchema } from '@/utils/models/user-zod-model'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '../ui/select'
 import { SelectValue } from '@radix-ui/react-select'
 import { useState } from 'react'

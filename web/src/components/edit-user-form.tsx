@@ -1,4 +1,7 @@
-import { editUserFormSchema, userFormSchema } from '@/services/user-zod-model'
+import {
+  editUserFormSchema,
+  userFormSchema,
+} from '@/utils/models/user-zod-model'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'

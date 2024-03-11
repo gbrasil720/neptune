@@ -1,9 +1,40 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
+import { createClient } from '@/utils/supabase/client'
 import { SignInButton } from '@clerk/nextjs'
 import { AtSign } from 'lucide-react'
+import { cookies } from 'next/headers'
 import Image from 'next/image'
+// import { useRouter } from 'next/navigation'
 
 export default function AuthPage() {
+  // const router = useRouter()
+  const { toast } = useToast()
+
+  // const cookieStore = cookies()
+  const supabase = createClient()
+
+  function signInWithGoogle() {
+    supabase.auth
+      .signInWithOAuth({
+        provider: 'google',
+        options: {
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      })
+      .then(() => {
+        // router.push('/sign-in')
+        toast({
+          title: 'Success',
+        })
+      })
+  }
+
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[350px] flex-col justify-center space-y-6">
@@ -18,12 +49,16 @@ export default function AuthPage() {
           </div>
         </div>
         <div>
-          <SignInButton>
-            <Button variant="outline" className="w-full">
-              <AtSign size={24} className="mr-2 size-4" />
-              Sign in with Google
-            </Button>
-          </SignInButton>
+          {/* <SignInButton> */}
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={signInWithGoogle}
+          >
+            <AtSign size={24} className="mr-2 size-4" />
+            Sign in with Google
+          </Button>
+          {/* </SignInButton> */}
         </div>
         <p className="px-10 text-center text-sm leading-relaxed text-muted-foreground">
           By clicking continue, you agree to our{' '}

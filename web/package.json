@@ -21,6 +21,8 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
     "@sira-ui/tailwind": "^0.11.8",
+    "@supabase/ssr": "^0.1.0",
+    "@supabase/supabase-js": "^2.39.7",
     "@tanstack/react-table": "^8.13.0",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
