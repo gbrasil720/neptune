@@ -10,6 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model TeamManager {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  telephone String
+  role      RoleEnum @default(MANAGER)
+  teams     Team[]
+}
+
+model Team {
+  id            String       @id @default(uuid())
+  name          String
+  users         User[]
+  TeamManager   TeamManager? @relation(fields: [teamManagerId], references: [id])
+  teamManagerId String?
+}
+
 model User {
   id        String   @id @default(uuid())
   firstName String
@@ -17,10 +34,12 @@ model User {
   email     String
   telephone String
   role      RoleEnum @default(MEMBER)
+  Team      Team?    @relation(fields: [teamId], references: [id])
+  teamId    String?
 }
 
 enum RoleEnum {
-  ADMIN
+  MANAGER
   MODERATOR
   SUBSCRIBER
   MEMBER
