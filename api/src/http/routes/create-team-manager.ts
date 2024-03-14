@@ -4,11 +4,22 @@ import { prisma } from "../lib/prisma";
 
 export async function createTeamManager(app: FastifyInstance) {
 	app.post("/manager/create", async (request, reply) => {
+		const userObject = z.object({
+			name: z.string(),
+			email: z.string().email(),
+			telephone: z.string(),
+		});
+
+		const teamObject = z.object({
+			name: z.string(),
+			users: z.array(userObject).optional(),
+		});
+
 		const createTeamManager = z.object({
 			name: z.string(),
 			email: z.string().email(),
 			telephone: z.string(),
-			teams: z.array(z.object({})),
+			teams: z.array(teamObject).optional(),
 		});
 
 		const details = createTeamManager.safeParse(request.body);

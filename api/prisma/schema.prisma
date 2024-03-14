@@ -29,8 +29,7 @@ model Team {
 
 model User {
   id        String   @id @default(uuid())
-  firstName String
-  lastName  String
+  name      String
   email     String
   telephone String
   role      RoleEnum @default(MEMBER)

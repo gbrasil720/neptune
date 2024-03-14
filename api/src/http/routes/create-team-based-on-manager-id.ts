@@ -27,7 +27,7 @@ export async function createTeamBasedOnManagerId(app: FastifyInstance) {
 			},
 		});
 
-		if (managerExists) {
+		if (!managerExists) {
 			return reply
 				.status(400)
 				.send({ error: "This manager account does not exists" });
@@ -37,6 +37,7 @@ export async function createTeamBasedOnManagerId(app: FastifyInstance) {
 			data: {
 				name: details.data.name,
 				users: {},
+				teamManagerId: params.managerId,
 			},
 		});
 
@@ -46,7 +47,9 @@ export async function createTeamBasedOnManagerId(app: FastifyInstance) {
 			},
 		});
 
-		const newTeams = [...alreadyExistsTeam, team].filter((team) => team.id); // Filter out objects without the 'id' property
+		const newTeams = [...alreadyExistsTeam, team].map(({ id }: any) => ({
+			id,
+		}));
 
 		const updatedManager = await prisma.teamManager.update({
 			where: {
@@ -54,7 +57,7 @@ export async function createTeamBasedOnManagerId(app: FastifyInstance) {
 			},
 			data: {
 				teams: {
-					set: newTeams.map((team) => ({ id: team.id })),
+					set: newTeams,
 				},
 			},
 		});
