@@ -1,39 +1,41 @@
-import type { FastifyInstance } from "fastify";
-import { z } from "zod";
-import { prisma } from "../lib/prisma";
+import type { FastifyInstance } from 'fastify'
+import { z } from 'zod'
+import { prisma } from '../lib/prisma'
 
 export async function createUser(app: FastifyInstance) {
-	app.post("/users/:teamId", async (request, reply) => {
+	app.post('/users/:teamId', async (request, reply) => {
 		const createUserBody = z.object({
 			name: z.string(),
 			email: z.string().email(),
 			telephone: z.string(),
-			role: z.enum(["MANAGER", "MODERATOR", "SUBSCRIBER", "MEMBER"]).optional(),
-		});
+			role: z
+				.enum(['MANAGER', 'MODERATOR', 'SUBSCRIBER', 'MEMBER'])
+				.optional(),
+		})
 
 		const createUserParams = z.object({
 			teamId: z.string(),
-		});
+		})
 
-		const details = createUserBody.safeParse(request.body);
-		const teamId = createUserParams.parse(request.params);
+		const details = createUserBody.safeParse(request.body)
+		const teamId = createUserParams.parse(request.params)
 
 		if (!details.success || !details.data) {
 			return reply.status(400).send({
-				error: "The user details are not fully completed or are invalid",
-			});
+				error: 'The user details are not fully completed or are invalid',
+			})
 		}
 
 		const userExists = await prisma.user.findFirst({
 			where: {
 				email: details.data.email,
 			},
-		});
+		})
 
 		if (userExists) {
 			return reply
 				.status(400)
-				.send({ error: "The provided email is already registered" });
+				.send({ error: 'The provided email is already registered' })
 		}
 
 		const user = await prisma.user.create({
@@ -44,11 +46,11 @@ export async function createUser(app: FastifyInstance) {
 				role: details.data.role ? details.data.role : undefined,
 				teamId: teamId.teamId,
 			},
-		});
+		})
 
-		const existingUsers = await prisma.user.findMany();
+		const existingUsers = await prisma.user.findMany()
 
-		const allUsers = [...existingUsers, user];
+		const allUsers = [...existingUsers, user]
 
 		const updatedTeam = await prisma.team.update({
 			where: {
@@ -63,8 +65,8 @@ export async function createUser(app: FastifyInstance) {
 				users: true,
 				TeamManager: true,
 			},
-		});
+		})
 
-		return reply.status(201).send({ user, updatedTeam });
-	});
+		return reply.status(201).send({ user, updatedTeam })
+	})
 }

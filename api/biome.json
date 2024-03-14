@@ -11,5 +11,14 @@
 				"noExplicitAny": "off"
 			}
 		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
+			"indentStyle": "tab",
+			"indentWidth": 4,
+			"trailingComma": "es5"
+		}
 	}
 }

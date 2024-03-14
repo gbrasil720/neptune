@@ -1,14 +1,14 @@
-import type { FastifyInstance } from "fastify";
-import { z } from "zod";
-import { prisma } from "../lib/prisma";
+import type { FastifyInstance } from 'fastify'
+import { z } from 'zod'
+import { prisma } from '../lib/prisma'
 
 export async function getManagerDetails(app: FastifyInstance) {
-	app.get("/manager/:managerId", async (request, reply) => {
+	app.get('/manager/:managerId', async (request, reply) => {
 		const getManagerDetails = z.object({
 			managerId: z.string(),
-		});
+		})
 
-		const details = getManagerDetails.parse(request.params);
+		const details = getManagerDetails.parse(request.params)
 
 		const manager = await prisma.teamManager.findUnique({
 			where: {
@@ -21,8 +21,8 @@ export async function getManagerDetails(app: FastifyInstance) {
 					},
 				},
 			},
-		});
+		})
 
-		return reply.status(200).send({ manager });
-	});
+		return reply.status(200).send({ manager })
+	})
 }

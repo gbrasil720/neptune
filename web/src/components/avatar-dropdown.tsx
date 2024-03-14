@@ -1,6 +1,6 @@
-import { LogOut, Settings } from "lucide-react";
+import { LogOut, Settings } from 'lucide-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -8,11 +8,11 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from './ui/dropdown-menu'
 
 interface AvatarDropdownProps {
-	avatarSrc: string;
-	avatarFallback: string;
+	avatarSrc: string
+	avatarFallback: string
 }
 
 export function AvatarDropdown({
@@ -40,5 +40,5 @@ export function AvatarDropdown({
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
-	);
+	)
 }

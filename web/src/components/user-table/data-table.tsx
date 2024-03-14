@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
 	type ColumnDef,
@@ -11,9 +11,9 @@ import {
 	getPaginationRowModel,
 	getSortedRowModel,
 	useReactTable,
-} from "@tanstack/react-table";
+} from '@tanstack/react-table'
 
-import { Input } from "../ui/input";
+import { Input } from '../ui/input'
 import {
 	Table,
 	TableBody,
@@ -21,25 +21,27 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "../ui/table";
+} from '../ui/table'
 
-import { useState } from "react";
-import { ColumnDropdown } from "../column-dropdown";
-import { CreateUserDialog } from "../dialog/create-user-dialog";
-import { UserTablePagination } from "./pagination";
+import { useState } from 'react'
+import { ColumnDropdown } from '../column-dropdown'
+import { CreateUserDialog } from '../dialog/create-user-dialog'
+import { UserTablePagination } from './pagination'
 
 interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[];
-	data: TData[];
+	columns: ColumnDef<TData, TValue>[]
+	data: TData[]
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
 }: DataTableProps<TData, TValue>) {
-	const [sorting, setSorting] = useState<SortingState>([]);
-	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+	const [sorting, setSorting] = useState<SortingState>([])
+	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+		{}
+	)
 
 	const table = useReactTable({
 		data,
@@ -56,16 +58,22 @@ export function DataTable<TData, TValue>({
 			columnFilters,
 			columnVisibility,
 		},
-	});
+	})
 
 	return (
 		<div>
 			<div className="flex items-center py-4">
 				<Input
 					placeholder="Filter emails..."
-					value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+					value={
+						(table
+							.getColumn('email')
+							?.getFilterValue() as string) ?? ''
+					}
 					onChange={(event) =>
-						table.getColumn("email")?.setFilterValue(event.target.value)
+						table
+							.getColumn('email')
+							?.setFilterValue(event.target.value)
 					}
 					className="max-w-sm"
 				/>
@@ -83,11 +91,12 @@ export function DataTable<TData, TValue>({
 											{header.isPlaceholder
 												? null
 												: flexRender(
-														header.column.columnDef.header,
-														header.getContext(),
+														header.column.columnDef
+															.header,
+														header.getContext()
 												  )}
 										</TableHead>
-									);
+									)
 								})}
 							</TableRow>
 						))}
@@ -97,13 +106,15 @@ export function DataTable<TData, TValue>({
 							table.getRowModel().rows.map((row) => (
 								<TableRow
 									key={row.id}
-									data-state={row.getIsSelected() && "selected"}
+									data-state={
+										row.getIsSelected() && 'selected'
+									}
 								>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell key={cell.id}>
 											{flexRender(
 												cell.column.columnDef.cell,
-												cell.getContext(),
+												cell.getContext()
 											)}
 										</TableCell>
 									))}
@@ -124,5 +135,5 @@ export function DataTable<TData, TValue>({
 			</div>
 			<UserTablePagination table={table} />
 		</div>
-	);
+	)
 }

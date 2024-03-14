@@ -5,52 +5,52 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { api } from "@/lib/api";
+} from '@/components/ui/form'
+import { api } from '@/lib/api'
 import {
 	editUserFormSchema,
 	userFormSchema,
-} from "@/utils/models/user-zod-model";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import type { z } from "zod";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+} from '@/utils/models/user-zod-model'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2 } from 'lucide-react'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import type { z } from 'zod'
+import { Button } from './ui/button'
+import { Input } from './ui/input'
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "./ui/select";
-import { useToast } from "./ui/use-toast";
+} from './ui/select'
+import { useToast } from './ui/use-toast'
 
 export function EditUserForm({ user }: any) {
-	const [loading, setLoading] = useState<boolean>();
-	const { toast } = useToast();
+	const [loading, setLoading] = useState<boolean>()
+	const { toast } = useToast()
 
 	const form = useForm<z.infer<typeof editUserFormSchema>>({
 		resolver: zodResolver(editUserFormSchema),
-	});
+	})
 
 	async function onSubmit(values: z.infer<typeof editUserFormSchema>) {
-		setLoading(true);
+		setLoading(true)
 
 		try {
-			await api.patch(`/users/${user.id}`, { role: values.role });
+			await api.patch(`/users/${user.id}`, { role: values.role })
 		} catch (err) {
 			return toast({
-				variant: "destructive",
-				title: "Oops! An error occurred!",
+				variant: 'destructive',
+				title: 'Oops! An error occurred!',
 				description:
-					"The user you are trying to edit, probably already has the inserted role",
-			});
+					'The user you are trying to edit, probably already has the inserted role',
+			})
 		}
 
-		setLoading(false);
-		window.location.reload();
+		setLoading(false)
+		window.location.reload()
 	}
 
 	return (
@@ -63,7 +63,11 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>First name</FormLabel>
 							<FormControl>
-								<Input {...field} value={user.firstName} disabled />
+								<Input
+									{...field}
+									value={user.firstName}
+									disabled
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -76,7 +80,11 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>Last name</FormLabel>
 							<FormControl>
-								<Input {...field} value={user.lastName} disabled />
+								<Input
+									{...field}
+									value={user.lastName}
+									disabled
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -102,7 +110,11 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>First name</FormLabel>
 							<FormControl>
-								<Input {...field} value={user.telephone} disabled />
+								<Input
+									{...field}
+									value={user.telephone}
+									disabled
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -115,15 +127,26 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>Role</FormLabel>
 							<FormControl>
-								<Select onValueChange={field.onChange} defaultValue={user.role}>
+								<Select
+									onValueChange={field.onChange}
+									defaultValue={user.role}
+								>
 									<SelectTrigger>
 										<SelectValue placeholder="User role" />
 									</SelectTrigger>
 									<SelectContent>
-										<SelectItem value="MEMBER">MEMBER</SelectItem>
-										<SelectItem value="SUBSCRIBER">SUBSCRIBER</SelectItem>
-										<SelectItem value="MODERATOR">MODERATOR</SelectItem>
-										<SelectItem value="ADMIN">ADMIN</SelectItem>
+										<SelectItem value="MEMBER">
+											MEMBER
+										</SelectItem>
+										<SelectItem value="SUBSCRIBER">
+											SUBSCRIBER
+										</SelectItem>
+										<SelectItem value="MODERATOR">
+											MODERATOR
+										</SelectItem>
+										<SelectItem value="ADMIN">
+											ADMIN
+										</SelectItem>
 									</SelectContent>
 								</Select>
 							</FormControl>
@@ -140,5 +163,5 @@ export function EditUserForm({ user }: any) {
 				)}
 			</form>
 		</Form>
-	);
+	)
 }

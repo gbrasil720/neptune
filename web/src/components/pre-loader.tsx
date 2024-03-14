@@ -5,5 +5,5 @@ export function PreLoader() {
 				<div className="flow-cross" />
 			</div>
 		</div>
-	);
+	)
 }

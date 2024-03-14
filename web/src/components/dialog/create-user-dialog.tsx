@@ -4,7 +4,7 @@ import {
 	DialogDescription,
 	DialogTitle,
 	DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog'
 import {
 	Form,
 	FormControl,
@@ -12,53 +12,53 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "../ui/button";
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '../ui/button'
 
-import { Loader2, Plus } from "lucide-react";
+import { Loader2, Plus } from 'lucide-react'
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import type { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import type { z } from 'zod'
 
-import { api } from "@/lib/api";
-import { userFormSchema } from "@/utils/models/user-zod-model";
-import { SelectValue } from "@radix-ui/react-select";
-import { useState } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
-import { useToast } from "../ui/use-toast";
+import { api } from '@/lib/api'
+import { userFormSchema } from '@/utils/models/user-zod-model'
+import { SelectValue } from '@radix-ui/react-select'
+import { useState } from 'react'
+import { Select, SelectContent, SelectItem, SelectTrigger } from '../ui/select'
+import { useToast } from '../ui/use-toast'
 
 export function CreateUserDialog() {
-	const [loading, setLoading] = useState<boolean>();
-	const [open, setOpen] = useState(false);
-	const { toast } = useToast();
+	const [loading, setLoading] = useState<boolean>()
+	const [open, setOpen] = useState(false)
+	const { toast } = useToast()
 
 	const form = useForm<z.infer<typeof userFormSchema>>({
 		resolver: zodResolver(userFormSchema),
 		defaultValues: {
-			role: "MEMBER",
+			role: 'MEMBER',
 		},
-	});
+	})
 
 	async function onSubmit(values: z.infer<typeof userFormSchema>) {
-		setLoading(true);
+		setLoading(true)
 
 		try {
-			await api.post("/users", values);
+			await api.post('/users', values)
 		} catch {
-			setLoading(false);
+			setLoading(false)
 			return toast({
-				variant: "destructive",
-				title: "An error occurred during your transaction",
+				variant: 'destructive',
+				title: 'An error occurred during your transaction',
 				description:
-					"If you are trying to create a user, probably another user already exists with the provided email",
-			});
+					'If you are trying to create a user, probably another user already exists with the provided email',
+			})
 		}
 
-		setLoading(false);
-		setOpen(false);
-		window.location.reload();
+		setLoading(false)
+		setOpen(false)
+		window.location.reload()
 	}
 
 	return (
@@ -73,7 +73,10 @@ export function CreateUserDialog() {
 				<DialogTitle>Creating new user</DialogTitle>
 				<DialogDescription>
 					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+						<form
+							onSubmit={form.handleSubmit(onSubmit)}
+							className="space-y-8"
+						>
 							<FormField
 								control={form.control}
 								name="firstName"
@@ -157,10 +160,18 @@ export function CreateUserDialog() {
 													<SelectValue placeholder="User role" />
 												</SelectTrigger>
 												<SelectContent>
-													<SelectItem value="MEMBER">MEMBER</SelectItem>
-													<SelectItem value="SUBSCRIBER">SUBSCRIBER</SelectItem>
-													<SelectItem value="MODERATOR">MODERATOR</SelectItem>
-													<SelectItem value="ADMIN">ADMIN</SelectItem>
+													<SelectItem value="MEMBER">
+														MEMBER
+													</SelectItem>
+													<SelectItem value="SUBSCRIBER">
+														SUBSCRIBER
+													</SelectItem>
+													<SelectItem value="MODERATOR">
+														MODERATOR
+													</SelectItem>
+													<SelectItem value="ADMIN">
+														ADMIN
+													</SelectItem>
 												</SelectContent>
 											</Select>
 										</FormControl>
@@ -169,7 +180,11 @@ export function CreateUserDialog() {
 								)}
 							/>
 							{loading ? (
-								<Button type="submit" disabled className="w-full">
+								<Button
+									type="submit"
+									disabled
+									className="w-full"
+								>
 									<Loader2 className="mr-2 h-6 w-6 animate-spin" />
 								</Button>
 							) : (
@@ -182,5 +197,5 @@ export function CreateUserDialog() {
 				</DialogDescription>
 			</DialogContent>
 		</Dialog>
-	);
+	)
 }

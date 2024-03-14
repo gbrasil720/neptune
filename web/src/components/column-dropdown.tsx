@@ -1,13 +1,13 @@
-import { Button } from "./ui/button";
+import { Button } from './ui/button'
 import {
 	DropdownMenu,
 	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
 	DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from './ui/dropdown-menu'
 
 interface ColumnDropdown {
-	table: any;
+	table: any
 }
 
 export function ColumnDropdown({ table }: ColumnDropdown) {
@@ -28,13 +28,15 @@ export function ColumnDropdown({ table }: ColumnDropdown) {
 								key={column.id}
 								className="capitalize"
 								checked={column.getIsVisible()}
-								onCheckedChange={(value) => column.toggleVisibility(!!value)}
+								onCheckedChange={(value) =>
+									column.toggleVisibility(!!value)
+								}
 							>
 								{column.id}
 							</DropdownMenuCheckboxItem>
-						);
+						)
 					})}
 			</DropdownMenuContent>
 		</DropdownMenu>
-	);
+	)
 }

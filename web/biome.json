@@ -18,11 +18,20 @@
 			"./src/utils"
 		]
 	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
+			"indentStyle": "tab",
+			"indentWidth": 4,
+			"trailingComma": "es5"
+		}
+	},
 	"formatter": {
 		"enabled": true,
 		"formatWithErrors": true,
 		"indentStyle": "tab",
-		"indentWidth": 2,
+		"indentWidth": 4,
 		"lineWidth": 80,
 		"lineEnding": "lf",
 		"ignore": [

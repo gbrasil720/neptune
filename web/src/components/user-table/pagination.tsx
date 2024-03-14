@@ -1,7 +1,7 @@
-import { Button } from "../ui/button";
+import { Button } from '../ui/button'
 
 interface UserTablePaginationProps {
-	table: any;
+	table: any
 }
 
 export function UserTablePagination({ table }: UserTablePaginationProps) {
@@ -24,5 +24,5 @@ export function UserTablePagination({ table }: UserTablePaginationProps) {
 				Next
 			</Button>
 		</div>
-	);
+	)
 }
