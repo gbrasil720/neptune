@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch src/http/server.ts",
+    "biome:check": "npx @biomejs/biome check --apply ./src"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.1",
     "@types/node": "^20.11.19",
     "prisma": "^5.9.1",
     "prisma-docs-generator": "^0.8.0",

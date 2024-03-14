@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "biome:check": "npx @biomejs/biome check --apply ./src"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.9",
@@ -44,6 +45,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.1",
     "@types/axios": "^0.14.0",
     "@types/node": "^20",
     "@types/react": "^18",
