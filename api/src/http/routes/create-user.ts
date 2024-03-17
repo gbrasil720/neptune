@@ -8,9 +8,7 @@ export async function createUser(app: FastifyInstance) {
 			name: z.string(),
 			email: z.string().email(),
 			telephone: z.string(),
-			role: z
-				.enum(['MANAGER', 'MODERATOR', 'SUBSCRIBER', 'MEMBER'])
-				.optional(),
+			role: z.enum(['MANAGER', 'MODERATOR', 'SUBSCRIBER', 'MEMBER']).optional(),
 		})
 
 		const createUserParams = z.object({
