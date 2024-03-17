@@ -5,7 +5,8 @@ import { prisma } from '../lib/prisma'
 export async function createUser(app: FastifyInstance) {
 	app.post('/users/:teamId', async (request, reply) => {
 		const createUserBody = z.object({
-			name: z.string(),
+			firstName: z.string(),
+			lastName: z.string(),
 			email: z.string().email(),
 			telephone: z.string(),
 			role: z.enum(['MANAGER', 'MODERATOR', 'SUBSCRIBER', 'MEMBER']).optional(),
@@ -38,7 +39,8 @@ export async function createUser(app: FastifyInstance) {
 
 		const user = await prisma.user.create({
 			data: {
-				name: details.data.name,
+				firstName: details.data.firstName,
+				lastName: details.data.lastName,
 				email: details.data.email,
 				telephone: details.data.telephone,
 				role: details.data.role ? details.data.role : undefined,

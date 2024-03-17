@@ -24,7 +24,8 @@ import { useToast } from '../ui/use-toast'
 
 export type User = {
 	id: string
-	name: string
+	firstName: string
+	lastName: string
 	email: string
 	telephone: string
 	role: Role
@@ -39,8 +40,12 @@ enum Role {
 
 export const columns: ColumnDef<User>[] = [
 	{
-		accessorKey: 'name',
-		header: 'Name',
+		accessorKey: 'firstName',
+		header: 'First name',
+	},
+	{
+		accessorKey: 'lastName',
+		header: 'Last name'
 	},
 	{
 		accessorKey: 'email',
