@@ -2,14 +2,20 @@
 
 import { Navbar } from '@/components/navbar'
 import { PreLoader } from '@/components/pre-loader'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card'
 import { api } from '@/lib/api'
 import { createClient } from '@/utils/supabase/client'
 import { CalendarClock, Fingerprint, Pencil, Users } from 'lucide-react'
+import moment from 'moment'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import moment from 'moment'
-import { Button } from '@/components/ui/button'
 
 interface TeamUserProps {
 	id: string
@@ -79,35 +85,39 @@ export default function Home() {
 		<>
 			<Navbar />
 			{teamsData ? (
-				<div className='container mx-auto py-10 space-y-10'>
+				<div className="container mx-auto py-10 space-y-10">
 					{teamsData.map((team) => (
 						<Card key={team.id}>
 							<CardHeader>
-								<div className='flex items-center justify-between'>
+								<div className="flex items-center justify-between">
 									<div>
 										<CardTitle>{team.name}</CardTitle>
-										<CardDescription>All informations about the <b>{team.name}</b> team</CardDescription>
+										<CardDescription>
+											All informations about the <b>{team.name}</b> team
+										</CardDescription>
 									</div>
 									<Button
 										onClick={() => router.push(`/dashboard/team/${team.id}`)}
-										className='mt-5 flex items-center gap-2'
+										className="mt-5 flex items-center gap-2"
 									>
-										<Pencil size={14}/>
+										<Pencil size={14} />
 										Manage
 									</Button>
 								</div>
 							</CardHeader>
 							<CardContent>
-								<div className='flex items-center space-x-3'>
-									<Users size={18}/>
+								<div className="flex items-center space-x-3">
+									<Users size={18} />
 									<p>Users count: {team.users.length}</p>
 								</div>
-								<div className='flex items-center space-x-3'>
-									<CalendarClock size={18}/>
-									<p>Created at: {moment(team.createdAt).format("MMMM Do YYYY")}</p>
+								<div className="flex items-center space-x-3">
+									<CalendarClock size={18} />
+									<p>
+										Created at: {moment(team.createdAt).format('MMMM Do YYYY')}
+									</p>
 								</div>
-								<div className='flex items-center space-x-3'>
-									<Fingerprint size={18}/>
+								<div className="flex items-center space-x-3">
+									<Fingerprint size={18} />
 									<p>Team id: {team.id}</p>
 								</div>
 							</CardContent>
