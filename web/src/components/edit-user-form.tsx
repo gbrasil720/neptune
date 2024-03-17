@@ -63,11 +63,7 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>First name</FormLabel>
 							<FormControl>
-								<Input
-									{...field}
-									value={user.firstName}
-									disabled
-								/>
+								<Input {...field} value={user.firstName} disabled />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -80,11 +76,7 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>Last name</FormLabel>
 							<FormControl>
-								<Input
-									{...field}
-									value={user.lastName}
-									disabled
-								/>
+								<Input {...field} value={user.lastName} disabled />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -110,11 +102,7 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>First name</FormLabel>
 							<FormControl>
-								<Input
-									{...field}
-									value={user.telephone}
-									disabled
-								/>
+								<Input {...field} value={user.telephone} disabled />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -127,26 +115,15 @@ export function EditUserForm({ user }: any) {
 						<FormItem>
 							<FormLabel>Role</FormLabel>
 							<FormControl>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={user.role}
-								>
+								<Select onValueChange={field.onChange} defaultValue={user.role}>
 									<SelectTrigger>
 										<SelectValue placeholder="User role" />
 									</SelectTrigger>
 									<SelectContent>
-										<SelectItem value="MEMBER">
-											MEMBER
-										</SelectItem>
-										<SelectItem value="SUBSCRIBER">
-											SUBSCRIBER
-										</SelectItem>
-										<SelectItem value="MODERATOR">
-											MODERATOR
-										</SelectItem>
-										<SelectItem value="ADMIN">
-											ADMIN
-										</SelectItem>
+										<SelectItem value="MEMBER">MEMBER</SelectItem>
+										<SelectItem value="SUBSCRIBER">SUBSCRIBER</SelectItem>
+										<SelectItem value="MODERATOR">MODERATOR</SelectItem>
+										<SelectItem value="ADMIN">ADMIN</SelectItem>
 									</SelectContent>
 								</Select>
 							</FormControl>

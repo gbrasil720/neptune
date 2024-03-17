@@ -30,10 +30,8 @@ export default function RootLayout({
 
 			if (!userExists) {
 				const name =
-					session.data.session?.user.identities?.[0]?.identity_data
-						?.name ?? ''
-				const email =
-					session.data.session?.user.user_metadata?.email ?? ''
+					session.data.session?.user.identities?.[0]?.identity_data?.name ?? ''
+				const email = session.data.session?.user.user_metadata?.email ?? ''
 
 				await supabase.from('TeamManager').insert({
 					name,
@@ -56,11 +54,7 @@ export default function RootLayout({
 					fontSans.variable
 				)}
 			>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="light"
-					enableSystem
-				>
+				<ThemeProvider attribute="class" defaultTheme="light" enableSystem>
 					{children}
 				</ThemeProvider>
 				<Toaster />

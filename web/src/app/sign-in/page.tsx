@@ -25,11 +25,9 @@ export default function AuthPage() {
 
 				const id = data.session?.user?.identities?.[0]?.user_id ?? ''
 				const name =
-					data.session?.user.identities?.[0]?.identity_data?.name ??
-					''
+					data.session?.user.identities?.[0]?.identity_data?.name ?? ''
 				const email =
-					data.session?.user.identities?.[0]?.identity_data?.email ??
-					''
+					data.session?.user.identities?.[0]?.identity_data?.email ?? ''
 				const telephone = data.session?.user.phone ?? ''
 
 				await api.post('/manager/create', {
@@ -48,17 +46,10 @@ export default function AuthPage() {
 		<div className="relative flex min-h-screen flex-col items-center justify-center">
 			<div className="mx-auto flex w-full max-w-[350px] flex-col justify-center space-y-6">
 				<div className="flex flex-col items-center space-y-4">
-					<Image
-						src="/logo.svg"
-						alt="Neptune"
-						width={120}
-						height={120}
-					/>
+					<Image src="/logo.svg" alt="Neptune" width={120} height={120} />
 
 					<div className="space-y-2 text-center">
-						<h1 className="text-2xl font-semibold tracking-tight">
-							neptune
-						</h1>
+						<h1 className="text-2xl font-semibold tracking-tight">neptune</h1>
 						<p className="text-sm text-muted-foreground">
 							The perfect company management app that you need.
 						</p>

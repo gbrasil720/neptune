@@ -73,10 +73,7 @@ export function CreateUserDialog() {
 				<DialogTitle>Creating new user</DialogTitle>
 				<DialogDescription>
 					<Form {...form}>
-						<form
-							onSubmit={form.handleSubmit(onSubmit)}
-							className="space-y-8"
-						>
+						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 							<FormField
 								control={form.control}
 								name="firstName"
@@ -160,18 +157,10 @@ export function CreateUserDialog() {
 													<SelectValue placeholder="User role" />
 												</SelectTrigger>
 												<SelectContent>
-													<SelectItem value="MEMBER">
-														MEMBER
-													</SelectItem>
-													<SelectItem value="SUBSCRIBER">
-														SUBSCRIBER
-													</SelectItem>
-													<SelectItem value="MODERATOR">
-														MODERATOR
-													</SelectItem>
-													<SelectItem value="ADMIN">
-														ADMIN
-													</SelectItem>
+													<SelectItem value="MEMBER">MEMBER</SelectItem>
+													<SelectItem value="SUBSCRIBER">SUBSCRIBER</SelectItem>
+													<SelectItem value="MODERATOR">MODERATOR</SelectItem>
+													<SelectItem value="ADMIN">ADMIN</SelectItem>
 												</SelectContent>
 											</Select>
 										</FormControl>
@@ -180,11 +169,7 @@ export function CreateUserDialog() {
 								)}
 							/>
 							{loading ? (
-								<Button
-									type="submit"
-									disabled
-									className="w-full"
-								>
+								<Button type="submit" disabled className="w-full">
 									<Loader2 className="mr-2 h-6 w-6 animate-spin" />
 								</Button>
 							) : (

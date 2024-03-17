@@ -52,10 +52,9 @@ export default function Home() {
 			if (data.error === 'The manager does not exist') {
 				await api.post('/manager/create', {
 					id: session.data.session?.user.identities?.[0].user_id,
-					name: session.data.session?.user.identities?.[0]
-						.identity_data?.name,
-					email: session.data.session?.user.identities?.[0]
-						.identity_data?.email,
+					name: session.data.session?.user.identities?.[0].identity_data?.name,
+					email:
+						session.data.session?.user.identities?.[0].identity_data?.email,
 					telephone: session.data.session?.user.phone,
 				})
 			}

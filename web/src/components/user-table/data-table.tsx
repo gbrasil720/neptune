@@ -39,9 +39,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-		{}
-	)
+	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
 
 	const table = useReactTable({
 		data,
@@ -65,15 +63,9 @@ export function DataTable<TData, TValue>({
 			<div className="flex items-center py-4">
 				<Input
 					placeholder="Filter emails..."
-					value={
-						(table
-							.getColumn('email')
-							?.getFilterValue() as string) ?? ''
-					}
+					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
 					onChange={(event) =>
-						table
-							.getColumn('email')
-							?.setFilterValue(event.target.value)
+						table.getColumn('email')?.setFilterValue(event.target.value)
 					}
 					className="max-w-sm"
 				/>
@@ -91,8 +83,7 @@ export function DataTable<TData, TValue>({
 											{header.isPlaceholder
 												? null
 												: flexRender(
-														header.column.columnDef
-															.header,
+														header.column.columnDef.header,
 														header.getContext()
 												  )}
 										</TableHead>
@@ -106,9 +97,7 @@ export function DataTable<TData, TValue>({
 							table.getRowModel().rows.map((row) => (
 								<TableRow
 									key={row.id}
-									data-state={
-										row.getIsSelected() && 'selected'
-									}
+									data-state={row.getIsSelected() && 'selected'}
 								>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell key={cell.id}>

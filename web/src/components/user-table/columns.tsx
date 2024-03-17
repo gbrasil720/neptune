@@ -48,9 +48,7 @@ export const columns: ColumnDef<User>[] = [
 			return (
 				<Button
 					variant="ghost"
-					onClick={() =>
-						column.toggleSorting(column.getIsSorted() === 'asc')
-					}
+					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
 				>
 					Email
 					<ArrowUpDown className="ml-2 h-4 w-4" />
@@ -78,8 +76,7 @@ export const columns: ColumnDef<User>[] = [
 
 				return toast({
 					title: 'Success!',
-					description:
-						'The user id was successfully copied to your clipboard!',
+					description: 'The user id was successfully copied to your clipboard!',
 				})
 			}
 
