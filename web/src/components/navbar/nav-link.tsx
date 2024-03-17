@@ -1,8 +1,8 @@
-import Link, { type LinkProps as NextLinkProps } from "next/link";
-import type { ReactNode } from "react";
+import Link, { type LinkProps as NextLinkProps } from 'next/link'
+import type { ReactNode } from 'react'
 
 interface LinkProps extends NextLinkProps {
-	children: ReactNode;
+	children: ReactNode
 }
 
 export function NavLink(props: LinkProps) {
@@ -13,5 +13,5 @@ export function NavLink(props: LinkProps) {
 		>
 			{props.children}
 		</Link>
-	);
+	)
 }

@@ -1,7 +1,8 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps } from 'react'
 
-function FlagBR(props: ComponentProps<"svg">) {
+function FlagBR(props: ComponentProps<'svg'>) {
 	return (
+		// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -48,7 +49,11 @@ function FlagBR(props: ComponentProps<"svg">) {
 				<use id="p" xlinkHref="#a" transform="scale(26.25)" />
 				<g id="a" fill="#fff">
 					<g id="c">
-						<path id="b" transform="rotate(18 0 -1)" d="M0-1v1h.5" />
+						<path
+							id="b"
+							transform="rotate(18 0 -1)"
+							d="M0-1v1h.5"
+						/>
 						<use xlinkHref="#b" transform="scale(-1 1)" />
 					</g>
 					<use xlinkHref="#c" transform="rotate(72)" />
@@ -125,7 +130,7 @@ function FlagBR(props: ComponentProps<"svg">) {
 			<use y={390} x={-295} xlinkHref="#o" />
 			<use y={575} xlinkHref="#s" />
 		</svg>
-	);
+	)
 }
 
-export default FlagBR;
+export default FlagBR

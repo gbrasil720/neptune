@@ -4,9 +4,9 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/components/ui/select";
-import FlagBR from "../flags/flag-br";
-import FlagUS from "../flags/flag-us";
+} from '@/components/ui/select'
+import FlagBR from '../flags/flag-br'
+import FlagUS from '../flags/flag-us'
 
 export function LanguageSelect() {
 	return (
@@ -29,5 +29,5 @@ export function LanguageSelect() {
 				</SelectItem>
 			</SelectContent>
 		</Select>
-	);
+	)
 }

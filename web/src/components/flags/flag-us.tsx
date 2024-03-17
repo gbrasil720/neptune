@@ -1,7 +1,8 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps } from 'react'
 
-function FlagUS(props: ComponentProps<"svg">) {
+function FlagUS(props: ComponentProps<'svg'>) {
 	return (
+		// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -39,7 +40,7 @@ function FlagUS(props: ComponentProps<"svg">) {
 				<use xlinkHref="#e" x={2470} />
 			</g>
 		</svg>
-	);
+	)
 }
 
-export default FlagUS;
+export default FlagUS
