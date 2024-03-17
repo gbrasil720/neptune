@@ -16,6 +16,7 @@ export async function createTeamManager(app: FastifyInstance) {
 		})
 
 		const createTeamManager = z.object({
+			id: z.string(),
 			name: z.string(),
 			email: z.string().email(),
 			telephone: z.string(),
@@ -44,6 +45,7 @@ export async function createTeamManager(app: FastifyInstance) {
 
 		const manager = await prisma.teamManager.create({
 			data: {
+				id: details.data.id,
 				email: details.data.email,
 				name: details.data.name,
 				telephone: details.data.telephone,

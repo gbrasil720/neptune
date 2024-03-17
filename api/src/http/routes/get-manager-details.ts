@@ -23,6 +23,12 @@ export async function getManagerDetails(app: FastifyInstance) {
 			},
 		})
 
+		if (!manager) {
+			return reply
+				.status(200)
+				.send({ error: 'The manager does not exist' })
+		}
+
 		return reply.status(200).send({ manager })
 	})
 }

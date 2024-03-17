@@ -48,7 +48,11 @@ export async function createUser(app: FastifyInstance) {
 			},
 		})
 
-		const existingUsers = await prisma.user.findMany()
+		const existingUsers = await prisma.user.findMany({
+			where: {
+				teamId: teamId.teamId,
+			},
+		})
 
 		const allUsers = [...existingUsers, user]
 

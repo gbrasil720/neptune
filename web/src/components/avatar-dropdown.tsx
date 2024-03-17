@@ -1,5 +1,7 @@
 import { LogOut, Settings } from 'lucide-react'
 
+import { createClient } from '@/utils/supabase/client'
+import { useRouter } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
 	DropdownMenu,
@@ -19,6 +21,15 @@ export function AvatarDropdown({
 	avatarFallback,
 	avatarSrc,
 }: AvatarDropdownProps) {
+	const router = useRouter()
+	const supabase = createClient()
+
+	async function handleSignOut() {
+		await supabase.auth.signOut()
+
+		router.push('/sign-in')
+	}
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger>
@@ -34,7 +45,10 @@ export function AvatarDropdown({
 					Settings
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem className="text-red-500 gap-2 focus:underline focus:cursor-pointer focus:text-red-500">
+				<DropdownMenuItem
+					className="text-red-500 gap-2 focus:underline focus:cursor-pointer focus:text-red-500"
+					onClick={handleSignOut}
+				>
 					<LogOut className="size-4" />
 					Logout
 				</DropdownMenuItem>
