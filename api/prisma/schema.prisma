@@ -11,7 +11,7 @@ datasource db {
 }
 
 model TeamManager {
-  id        String   @id
+  id        String   @id @unique
   name      String
   email     String
   telephone String
