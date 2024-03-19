@@ -44,7 +44,7 @@ export default function TeamIdPage({ params }: { params: { teamId: string } }) {
   );
 }
 
-export async function getStaticParams() {
+export async function getStaticParams(): Promise<any> {
   const supabase = createClient();
   const session = await supabase.auth.getSession();
 

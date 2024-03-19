@@ -1,5 +1,6 @@
 "use client";
 
+import { CreateTeamDialog } from "@/components/dialog/create-team-dialog";
 import { Navbar } from "@/components/navbar";
 import { PreLoader } from "@/components/pre-loader";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,13 @@ import {
 } from "@/components/ui/card";
 import { api } from "@/utils/api";
 import { createClient } from "@/utils/supabase/client";
-import { CalendarClock, Fingerprint, Pencil, Users } from "lucide-react";
+import {
+  CalendarClock,
+  Fingerprint,
+  Pencil,
+  Search,
+  Users,
+} from "lucide-react";
 import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -37,11 +44,13 @@ interface TeamsDataProps {
 export default function Home() {
   const router = useRouter();
   const [teamsData, setTeamsData] = useState<TeamsDataProps[]>();
+  const [loading, setLoading] = useState(false);
 
   const supabase = createClient();
 
   useEffect(() => {
     async function loadSession() {
+      setLoading(true);
       const session = await supabase.auth.getSession();
 
       if (!session.data.session) {
@@ -62,9 +71,11 @@ export default function Home() {
           telephone: session.data.session?.user.phone,
         });
       }
+      setLoading(false);
     }
 
     async function handleLoadTeams() {
+      setLoading(true);
       const session = await supabase.auth.getSession();
 
       const { data } = await api.get(
@@ -73,6 +84,7 @@ export default function Home() {
 
       console.log(data.manager.teams);
       setTeamsData(data.manager.teams);
+      setLoading(false);
     }
 
     loadSession();
@@ -84,9 +96,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      {teamsData ? (
+      {loading ? (
         <div className="container mx-auto py-10 space-y-10">
-          {teamsData.map((team) => (
+          {teamsData?.map((team) => (
             <Card key={team.id}>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -125,7 +137,13 @@ export default function Home() {
           ))}
         </div>
       ) : (
-        <PreLoader />
+        <div className="flex flex-col h-screen my-auto py-10 space-y-10 items-center justify-center">
+          <Search size={30} className="animate-pulse" />
+          <p className="text-muted-foreground">
+            Oops! No team was found registered on your account :(
+          </p>
+          <CreateTeamDialog />
+        </div>
       )}
     </>
   );
