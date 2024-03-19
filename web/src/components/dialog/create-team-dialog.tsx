@@ -9,7 +9,7 @@ import {
 } from "../ui/dialog";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import type { z } from "zod";
 import { teamFormSchema } from "@/utils/models/team-zol-model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";

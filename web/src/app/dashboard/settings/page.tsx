@@ -126,7 +126,7 @@ export default function SettingsDisplayPage() {
                 <FormControl>
                   <Button
                     onClick={handleSignOut}
-                    className="bg-transparent border dark:text-white text-black hover:bg-destructive hover:text-white border-solid border-destructive gap-2 w-28"
+                    className="bg-transparent border text-destructive hover:bg-destructive hover:text-white border-solid border-destructive gap-2 w-28"
                   >
                     <LogOut className="size-4" />
                     Logout
