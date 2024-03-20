@@ -4,7 +4,6 @@ import { Navbar } from '@/components/navbar'
 import { SidebarNav } from '@/components/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { sidebarNavItems } from '@/utils/sidebarItems'
-import type { ReactNode } from 'react'
 
 interface SettingsLayoutProps {
 	children: React.ReactNode

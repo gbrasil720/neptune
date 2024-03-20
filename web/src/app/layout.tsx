@@ -6,8 +6,6 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
-import { createClient } from '@/utils/supabase/client'
-import { useEffect } from 'react'
 
 const fontSans = FontSans({
 	subsets: ['latin'],
@@ -19,32 +17,6 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	useEffect(() => {
-		async function loadSession() {
-			const supabase = createClient()
-			const session = await supabase.auth.getSession()
-			const userExists = await supabase
-				.from('TeamManager')
-				.select('*')
-				.eq('email', session.data.session?.user.email)
-
-			if (!userExists) {
-				const name =
-					session.data.session?.user.identities?.[0]?.identity_data?.name ?? ''
-				const email = session.data.session?.user.user_metadata?.email ?? ''
-
-				await supabase.from('TeamManager').insert({
-					name,
-					email,
-				})
-			}
-
-			console.log('DONE')
-		}
-
-		loadSession()
-	}, [])
-
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />

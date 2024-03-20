@@ -10,6 +10,7 @@ import { getManagerDetails } from './routes/get-manager-details'
 import { getSpecificUser } from './routes/get-specific-user'
 import { getUsers } from './routes/get-users'
 import { updateUserRole } from './routes/update-user-role'
+import { deleteTeam } from './routes/delete-team'
 
 const app = fastify()
 
@@ -25,6 +26,7 @@ app.register(deleteUser)
 app.register(createTeamBasedOnManagerId)
 app.register(createTeamManager)
 app.register(getManagerDetails)
+app.register(deleteTeam)
 
 app.listen({ port: 3333 }).then(() => {
 	console.log(
