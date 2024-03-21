@@ -34,6 +34,7 @@ model User {
   lastName  String
   email     String
   telephone String
+  birthDate DateTime
   role      RoleEnum @default(MEMBER)
   Team      Team?    @relation(fields: [teamId], references: [id])
   teamId    String?

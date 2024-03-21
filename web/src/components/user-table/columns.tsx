@@ -1,10 +1,17 @@
 'use client'
 
 import type { ColumnDef } from '@tanstack/react-table'
-import { ArrowUpDown, MoreHorizontal, Trash } from 'lucide-react'
+import {
+	ArrowUpDown,
+	Calendar,
+	MoreHorizontal,
+	Phone,
+	Trash,
+	UserCog,
+} from 'lucide-react'
 
 import { api } from '@/utils/api'
-import { EditUserForm } from '../edit-user-form'
+import { EditUserForm } from '../forms/edit-user-form'
 import { Button } from '../ui/button'
 import {
 	Dialog,
@@ -21,6 +28,7 @@ import {
 	DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 import { useToast } from '../ui/use-toast'
+import { format } from 'date-fns'
 
 export type User = {
 	id: string
@@ -28,6 +36,7 @@ export type User = {
 	lastName: string
 	email: string
 	telephone: string
+	birthDate: Date
 	role: Role
 }
 
@@ -55,19 +64,50 @@ export const columns: ColumnDef<User>[] = [
 					variant="ghost"
 					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
 				>
+					<ArrowUpDown className="mr-2 h-4 w-4" />
 					Email
-					<ArrowUpDown className="ml-2 h-4 w-4" />
 				</Button>
 			)
 		},
 	},
 	{
 		accessorKey: 'telephone',
-		header: 'Telephone',
+		header: ({ column }) => {
+			return (
+				<span className="flex items-center">
+					<Phone className="mr-2 h-4 w-4" />
+					Telephone
+				</span>
+			)
+		},
+	},
+	{
+		accessorKey: 'birthDate',
+		header: ({ column }) => {
+			return (
+				<span className="flex items-center">
+					<Calendar className="mr-2 h-4 w-4" />
+					Birth date
+				</span>
+			)
+		},
+		cell: ({ row }) => {
+			const value = String(row.getValue('birthDate'))
+
+			return format(value, 'dd/MM/yyyy')
+		},
 	},
 	{
 		accessorKey: 'role',
-		header: 'Role',
+		// header: 'Role',
+		header: ({ column }) => {
+			return (
+				<span className="flex items-center">
+					<UserCog className="mr-2 h-4 w-4" />
+					Role
+				</span>
+			)
+		},
 	},
 	{
 		id: 'actions',

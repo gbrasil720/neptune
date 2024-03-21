@@ -9,6 +9,7 @@ export async function createUser(app: FastifyInstance) {
 			lastName: z.string(),
 			email: z.string().email(),
 			telephone: z.string(),
+			birthDate: z.coerce.date(),
 			role: z.enum(['MANAGER', 'MODERATOR', 'SUBSCRIBER', 'MEMBER']).optional(),
 		})
 
@@ -22,6 +23,9 @@ export async function createUser(app: FastifyInstance) {
 		if (!details.success || !details.data) {
 			return reply.status(400).send({
 				error: 'The user details are not fully completed or are invalid',
+				teamId,
+				details,
+				request: request.body,
 			})
 		}
 
@@ -43,6 +47,7 @@ export async function createUser(app: FastifyInstance) {
 				lastName: details.data.lastName,
 				email: details.data.email,
 				telephone: details.data.telephone,
+				birthDate: details.data.birthDate,
 				role: details.data.role ? details.data.role : undefined,
 				teamId: teamId.teamId,
 			},

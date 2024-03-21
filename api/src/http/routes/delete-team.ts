@@ -16,6 +16,14 @@ export async function deleteTeam(app: FastifyInstance) {
 			},
 		})
 
-		return reply.status(200).send({ message: 'Team deleted successfully' })
+		await prisma.user.deleteMany({
+			where: {
+				teamId,
+			},
+		})
+
+		return reply
+			.status(200)
+			.send({ message: 'Team and all it users deleted successfully' })
 	})
 }

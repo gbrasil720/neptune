@@ -40,7 +40,10 @@ export function AvatarDropdown({
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuLabel>My account</DropdownMenuLabel>
-				<DropdownMenuItem className="gap-2 hover:cursor-pointer">
+				<DropdownMenuItem
+					className="gap-2 hover:cursor-pointer"
+					onClick={() => router.push('/dashboard/settings')}
+				>
 					<Settings className="size-4" />
 					Settings
 				</DropdownMenuItem>

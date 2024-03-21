@@ -31,11 +31,13 @@ import { UserTablePagination } from './pagination'
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[]
 	data: TData[]
+	teamId: string
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
+	teamId,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -70,7 +72,7 @@ export function DataTable<TData, TValue>({
 					className="max-w-sm"
 				/>
 				<ColumnDropdown table={table} />
-				<CreateUserDialog />
+				<CreateUserDialog teamId={teamId} />
 			</div>
 			<div className="rounded-md border">
 				<Table>

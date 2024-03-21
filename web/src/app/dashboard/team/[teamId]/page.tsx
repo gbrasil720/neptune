@@ -2,10 +2,11 @@
 
 import { Navbar } from '@/components/navbar'
 import { PreLoader } from '@/components/pre-loader'
-import UsersTable from '@/components/user-table'
+import { DataTable } from '@/components/user-table/data-table'
 import { api } from '@/utils/api'
 import { createClient } from '@/utils/supabase/client'
 import { useEffect, useState } from 'react'
+import { columns } from '@/components/user-table/columns'
 
 interface User {
 	id: string
@@ -16,8 +17,12 @@ interface User {
 	teamId: string
 }
 
+interface UsersTableProps {
+	data: any
+}
+
 export default function TeamIdPage({ params }: { params: { teamId: string } }) {
-	const [users, setUsers] = useState<User[]>([])
+	const [users, setUsers] = useState<User[] | UsersTableProps | any>([])
 	const supabase = createClient()
 
 	useEffect(() => {
@@ -39,7 +44,13 @@ export default function TeamIdPage({ params }: { params: { teamId: string } }) {
 	return (
 		<>
 			<Navbar />
-			{users ? <UsersTable data={users} /> : <PreLoader />}
+			{users ? (
+				<div className="container mx-auto py-10">
+					<DataTable columns={columns} data={users} teamId={params.teamId} />
+				</div>
+			) : (
+				<PreLoader />
+			)}
 		</>
 	)
 }

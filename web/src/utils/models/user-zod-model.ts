@@ -12,6 +12,7 @@ export const userFormSchema = z.object({
 	}),
 	telephone: z.string(),
 	role: z.enum(['ADMIN', 'MODERATOR', 'SUBSCRIBER', 'MEMBER']).optional(),
+	birthDate: z.date(),
 })
 
 export const editUserFormSchema = z.object({

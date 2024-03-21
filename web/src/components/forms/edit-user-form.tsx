@@ -13,16 +13,16 @@ import { Loader2 } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { z } from 'zod'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from './ui/select'
-import { useToast } from './ui/use-toast'
+} from '../ui/select'
+import { useToast } from '../ui/use-toast'
 
 export function EditUserForm({ user }: any) {
 	const [loading, setLoading] = useState<boolean>()

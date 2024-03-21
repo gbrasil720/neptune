@@ -24,6 +24,7 @@ import {
 import { Input } from '../ui/input'
 import { api } from '@/utils/api'
 import { getSessionInfos } from '@/utils/getSessionInfos'
+import { CreateTeamForm } from '../forms/create-team-form'
 
 export function CreateTeamDialog() {
 	const [open, setOpen] = useState(false)
@@ -64,36 +65,7 @@ export function CreateTeamDialog() {
 						Create a new awesome team for your company
 					</DialogDescription>
 				</DialogHeader>
-				<Form {...form}>
-					<form
-						onSubmit={form.handleSubmit(handleSubmit)}
-						className="space-y-8"
-					>
-						<FormField
-							control={form.control}
-							name="name"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Team name</FormLabel>
-									<FormControl>
-										<Input placeholder="Billing Team" {...field} />
-									</FormControl>
-									<FormDescription>
-										It must have a team name that has at least 5 characters
-									</FormDescription>
-								</FormItem>
-							)}
-						/>
-						{loading ? (
-							<Button className="w-full" disabled>
-								<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-								Create new team!
-							</Button>
-						) : (
-							<Button className="w-full">Create new team!</Button>
-						)}
-					</form>
-				</Form>
+				<CreateTeamForm loading={loading} onSubmit={handleSubmit} />
 			</DialogContent>
 		</Dialog>
 	)
