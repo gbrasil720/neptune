@@ -12,14 +12,13 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { z } from 'zod'
-import { teamFormSchema } from '@/utils/models/team-zol-model'
+import { teamFormSchema } from '@/utils/schemas/team-zol-schema'
+import type { NeptuneMain } from '@/@types'
 
-interface CreateTeamFormProps {
-	onSubmit: (values: z.infer<typeof teamFormSchema>) => void
-	loading: boolean | undefined
-}
-
-export function CreateTeamForm({ onSubmit, loading }: CreateTeamFormProps) {
+export function CreateTeamForm({
+	onSubmit,
+	loading,
+}: NeptuneMain.Forms.CreateTeamFormProps) {
 	const form = useForm<z.infer<typeof teamFormSchema>>({
 		resolver: zodResolver(teamFormSchema),
 	})

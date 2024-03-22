@@ -29,25 +29,9 @@ import {
 } from '../ui/dropdown-menu'
 import { useToast } from '../ui/use-toast'
 import { format } from 'date-fns'
+import type { NeptuneUtils } from '@/@types'
 
-export type User = {
-	id: string
-	firstName: string
-	lastName: string
-	email: string
-	telephone: string
-	birthDate: Date
-	role: Role
-}
-
-enum Role {
-	MANAGER = 0,
-	MODERATOR = 1,
-	SUBSCRIBER = 2,
-	MEMBER = 3,
-}
-
-export const columns: ColumnDef<User>[] = [
+export const columns: ColumnDef<NeptuneUtils.APIRequests.UserProps>[] = [
 	{
 		accessorKey: 'firstName',
 		header: 'First name',

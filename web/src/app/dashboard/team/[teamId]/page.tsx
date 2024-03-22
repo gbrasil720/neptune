@@ -7,22 +7,10 @@ import { api } from '@/utils/api'
 import { createClient } from '@/utils/supabase/client'
 import { useEffect, useState } from 'react'
 import { columns } from '@/components/user-table/columns'
-
-interface User {
-	id: string
-	name: string
-	email: string
-	telephone: string
-	role: string
-	teamId: string
-}
-
-interface UsersTableProps {
-	data: any
-}
+import type { NeptuneUtils } from '@/@types'
 
 export default function TeamIdPage({ params }: { params: { teamId: string } }) {
-	const [users, setUsers] = useState<User[] | UsersTableProps | any>([])
+	const [users, setUsers] = useState<NeptuneUtils.APIRequests.UserProps[]>([])
 	const supabase = createClient()
 
 	useEffect(() => {

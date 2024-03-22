@@ -12,17 +12,15 @@ import { Plus } from 'lucide-react'
 import type { z } from 'zod'
 
 import { api } from '@/utils/api'
-import type { userFormSchema } from '@/utils/models/user-zod-model'
+import type { userFormSchema } from '@/utils/schemas/user-zod-schema'
 import { useState } from 'react'
 import { useToast } from '../ui/use-toast'
 import { CreateUserForm } from '../forms/create-user-form'
-import { getSessionInfos } from '@/utils/getSessionInfos'
+import type { NeptuneUtils } from '@/@types'
 
-interface Team {
-	teamId: string
-}
-
-export function CreateUserDialog(teamId: Team) {
+export function CreateUserDialog(
+	team: NeptuneUtils.APIRequests.SingleTeamProps
+) {
 	const [loading, setLoading] = useState<boolean>()
 	const [open, setOpen] = useState(false)
 	const { toast } = useToast()
@@ -31,7 +29,7 @@ export function CreateUserDialog(teamId: Team) {
 		setLoading(true)
 
 		try {
-			await api.post(`/users/${teamId.teamId}`, values)
+			await api.post(`/users/${team.teamId}`, values)
 		} catch (err) {
 			console.log(err)
 

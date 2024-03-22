@@ -16,28 +16,22 @@ import {
 } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useTheme } from 'next-themes'
+import { appearanceFormSchema } from '@/utils/schemas/appearance-zod-schema'
+import type { NeptuneMain } from '@/@types'
 
-const appearanceFormSchema = z.object({
-	theme: z.enum(['light', 'dark'], {
-		required_error: 'Please select a theme.',
-	}),
-})
-
-type AppearanceFormValues = z.infer<typeof appearanceFormSchema>
-
-const defaultValues: Partial<AppearanceFormValues> = {
+const defaultValues: NeptuneMain.Forms.AppearanceFormDefaultValues = {
 	theme: 'light',
 }
 
 export function AppearanceForm() {
 	const { setTheme } = useTheme()
 
-	const form = useForm<AppearanceFormValues>({
+	const form = useForm<NeptuneMain.Forms.AppearanceFormValues>({
 		resolver: zodResolver(appearanceFormSchema),
 		defaultValues,
 	})
 
-	function onSubmit(data: AppearanceFormValues) {
+	function onSubmit(data: NeptuneMain.Forms.AppearanceFormValues) {
 		setTheme(data.theme)
 	}
 

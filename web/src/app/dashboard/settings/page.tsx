@@ -1,5 +1,6 @@
 'use client'
 
+import type { NeptuneUtils } from '@/@types'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -20,16 +21,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-interface GetSessionInfosProps {
-	avatar: string
-	name: string
-	email: string
-	phone: string
-	id: string
-}
-
 export default function SettingsDisplayPage() {
-	const [sessionInfos, setSessionInfos] = useState<GetSessionInfosProps>()
+	const [sessionInfos, setSessionInfos] = useState<NeptuneUtils.SessionInfos>()
 	const form = useForm()
 	const router = useRouter()
 	const supabase = createClient()

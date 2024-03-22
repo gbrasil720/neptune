@@ -1,10 +1,9 @@
+import type { NeptuneMain } from '@/@types'
 import { Button } from '../ui/button'
 
-interface UserTablePaginationProps {
-	table: any
-}
-
-export function UserTablePagination({ table }: UserTablePaginationProps) {
+export function UserTablePagination({
+	table,
+}: NeptuneMain.UsersTable.DataTable) {
 	return (
 		<div className="flex items-center justify-end space-x-2 py-4">
 			<Button

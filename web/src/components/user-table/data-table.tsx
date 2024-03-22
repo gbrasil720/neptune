@@ -24,21 +24,16 @@ import {
 } from '../ui/table'
 
 import { useState } from 'react'
-import { ColumnDropdown } from '../column-dropdown'
+import { ColumnDropdown } from './column-dropdown'
 import { CreateUserDialog } from '../dialog/create-user-dialog'
 import { UserTablePagination } from './pagination'
-
-interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[]
-	data: TData[]
-	teamId: string
-}
+import type { NeptuneMain } from '@/@types'
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
 	teamId,
-}: DataTableProps<TData, TValue>) {
+}: NeptuneMain.UsersTable.DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})

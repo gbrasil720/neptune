@@ -1,16 +1,13 @@
-import { Button } from './ui/button'
+import type { NeptuneMain } from '@/@types'
+import { Button } from '../ui/button'
 import {
 	DropdownMenu,
 	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
 	DropdownMenuTrigger,
-} from './ui/dropdown-menu'
+} from '../ui/dropdown-menu'
 
-interface ColumnDropdown {
-	table: any
-}
-
-export function ColumnDropdown({ table }: ColumnDropdown) {
+export function ColumnDropdown({ table }: NeptuneMain.UsersTable.DataTable) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>

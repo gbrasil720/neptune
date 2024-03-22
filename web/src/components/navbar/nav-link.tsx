@@ -1,11 +1,7 @@
-import Link, { type LinkProps as NextLinkProps } from 'next/link'
-import type { ReactNode } from 'react'
+import type { NeptuneMain } from '@/@types'
+import Link from 'next/link'
 
-interface LinkProps extends NextLinkProps {
-	children: ReactNode
-}
-
-export function NavLink(props: LinkProps) {
+export function NavLink(props: NeptuneMain.LinkProps) {
 	return (
 		<Link
 			{...props}

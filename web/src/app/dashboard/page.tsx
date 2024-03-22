@@ -1,5 +1,6 @@
 'use client'
 
+import type { NeptuneUtils } from '@/@types'
 import { CreateTeamDialog } from '@/components/dialog/create-team-dialog'
 import { Navbar } from '@/components/navbar'
 import { PreLoader } from '@/components/pre-loader'
@@ -11,26 +12,10 @@ import { Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-interface TeamUserProps {
-	id: string
-	name: string
-	email: string
-	telephone: string
-	role: string
-	teamId: string
-}
-
-interface TeamsDataProps {
-	id: string
-	name: string
-	teamManagerId: string
-	createdAt: string
-	users: TeamUserProps[]
-}
-
 export default function Home() {
 	const router = useRouter()
-	const [teamsData, setTeamsData] = useState<TeamsDataProps[]>()
+	const [teamsData, setTeamsData] =
+		useState<NeptuneUtils.APIRequests.TeamProps[]>()
 	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {

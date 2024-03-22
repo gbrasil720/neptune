@@ -1,4 +1,6 @@
-export const sidebarNavItems = [
+import type { NeptuneUtils } from '@/@types'
+
+export const sidebarNavItems: NeptuneUtils.Sidebar.SidebarItemsProps = [
 	{
 		title: 'Account',
 		href: '/dashboard/settings',

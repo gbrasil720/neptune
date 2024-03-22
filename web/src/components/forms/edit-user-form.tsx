@@ -7,7 +7,7 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { api } from '@/utils/api'
-import { editUserFormSchema } from '@/utils/models/user-zod-model'
+import { editUserFormSchema } from '@/utils/schemas/user-zod-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import { useState } from 'react'

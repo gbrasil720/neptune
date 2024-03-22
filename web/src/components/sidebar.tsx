@@ -2,15 +2,13 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from './ui/button'
+import type { NeptuneMain } from '@/@types'
 
-interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
-	items: {
-		href: string
-		title: string
-	}[]
-}
-
-export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
+export function SidebarNav({
+	className,
+	items,
+	...props
+}: NeptuneMain.SidebarNavProps) {
 	const pathname = usePathname()
 
 	return (

@@ -1,16 +1,7 @@
-import type { Session } from '@supabase/supabase-js'
 import { createClient } from './supabase/client'
+import type { NeptuneUtils } from '@/@types'
 
-interface SessionInfo {
-	id: string
-	name: string
-	email: string
-	phone: string
-	avatar: string
-	session: Session | null
-}
-
-export async function getSessionInfos(): Promise<SessionInfo> {
+export async function getSessionInfos(): Promise<NeptuneUtils.SessionInfos> {
 	const supabase = createClient()
 	const { data } = await supabase.auth.getSession()
 

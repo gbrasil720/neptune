@@ -13,12 +13,13 @@ import {
 	AlertDialogTrigger,
 } from '../ui/alert-dialog'
 import { api } from '@/utils/api'
+import type { NeptuneMain } from '@/@types'
 
 export function DeleteTeamDialog({
 	teamId,
 	teamName,
 	teamUsersLength,
-}: { teamId: string; teamName: string; teamUsersLength: number }) {
+}: NeptuneMain.Dialogs.DeleteTeamDialogProps) {
 	const [open, setOpen] = useState(false)
 	const [loading, setLoading] = useState(false)
 

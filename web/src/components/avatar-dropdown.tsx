@@ -11,16 +11,12 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-
-interface AvatarDropdownProps {
-	avatarSrc: string
-	avatarFallback: string
-}
+import type { NeptuneMain } from '@/@types'
 
 export function AvatarDropdown({
 	avatarFallback,
 	avatarSrc,
-}: AvatarDropdownProps) {
+}: NeptuneMain.AvatarDropdownProps) {
 	const router = useRouter()
 	const supabase = createClient()
 

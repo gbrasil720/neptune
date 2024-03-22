@@ -12,25 +12,9 @@ import {
 	CardTitle,
 } from './ui/card'
 import { format } from 'date-fns'
+import type { NeptuneUtils } from '@/@types'
 
-interface TeamUserProps {
-	id: string
-	name: string
-	email: string
-	telephone: string
-	role: string
-	teamId: string
-}
-
-interface TeamsDataProps {
-	id: string
-	name: string
-	teamManagerId: string
-	createdAt: string
-	users: TeamUserProps[]
-}
-
-export function TeamCard(team: TeamsDataProps) {
+export function TeamCard(team: NeptuneUtils.APIRequests.TeamProps) {
 	const router = useRouter()
 
 	return (

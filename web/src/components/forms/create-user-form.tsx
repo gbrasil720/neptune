@@ -26,15 +26,14 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { z } from 'zod'
-import { userFormSchema } from '@/utils/models/user-zod-model'
+import { userFormSchema } from '@/utils/schemas/user-zod-schema'
 import { Calendar } from '../ui/calendar'
+import type { NeptuneMain } from '@/@types'
 
-interface CreateUserFormProps {
-	onSubmit: (values: z.infer<typeof userFormSchema>) => void
-	loading: boolean | undefined
-}
-
-export function CreateUserForm({ onSubmit, loading }: CreateUserFormProps) {
+export function CreateUserForm({
+	onSubmit,
+	loading,
+}: NeptuneMain.Forms.CreateUserFormProps) {
 	const form = useForm<z.infer<typeof userFormSchema>>({
 		resolver: zodResolver(userFormSchema),
 		defaultValues: {

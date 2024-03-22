@@ -1,15 +1,14 @@
 'use client'
 
+import type { NeptuneMain } from '@/@types'
 import { Navbar } from '@/components/navbar'
 import { SidebarNav } from '@/components/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { sidebarNavItems } from '@/utils/sidebarItems'
 
-interface SettingsLayoutProps {
-	children: React.ReactNode
-}
-
-export default function SettingsLayout({ children }: SettingsLayoutProps) {
+export default function SettingsLayout({
+	children,
+}: NeptuneMain.SettingsLayoutProps) {
 	return (
 		<>
 			<Navbar />
